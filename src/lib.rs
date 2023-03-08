@@ -1,18 +1,14 @@
 pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
-    let mut sum: u32 = 0;
+    (1..=limit)
+        .filter(|i| is_multiple_of(i, factors))
+        .sum()
+}
 
+fn is_multiple_of(n: &u32, factors: &[u32]) -> bool {
     for i in factors {
-        let mut j = 1;
-
-        loop {
-            if i * j < limit {
-                sum += i * j;
-                j += 1;
-            }
-            else {
-                break;
-            }
+        if n % i == 0 {
+            return true;
         }
     }
-    sum
+    false
 }
